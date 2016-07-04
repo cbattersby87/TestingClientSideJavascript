@@ -1,4 +1,5 @@
 var assert = require('chai').assert;
+var User = require('../other/user.js');
 
 describe('Array', function () {
     describe('#indexOf()', function () {
@@ -19,7 +20,7 @@ describe('my first test', function () {
                 assert.equal(2, 2);
             });
 
-            it('should be my third test', function(){
+            it('should be my third test', function () {
                 assert.equal(3, 3);
             })
         });
@@ -27,6 +28,24 @@ describe('my first test', function () {
     });
 });
 
-describe('Asynchronous test suite', function(){
-    
-})
+describe('Asynchronous tests suite with timeout', function () {
+    it('should be asynchoronous', function (done) {
+        setTimeout(function () {
+            assert.equal(1, 1);
+            done();
+        }, 10);
+    });
+
+    describe('user', function () {
+        describe('#save()', function () {
+            it('should save without error', function (done) {
+                setTimeout(done, 300);
+                var user = new User('Luna');
+                user.save(function (err) {
+                    if (err) throw err;
+                    done();
+                });
+            })
+        });
+    });
+});
