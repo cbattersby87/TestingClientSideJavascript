@@ -1,4 +1,5 @@
-function Calculator() {
+function Calculator(element) {
+  this.el = element;
 }
 
 Calculator.prototype.add = function(a, b) {
